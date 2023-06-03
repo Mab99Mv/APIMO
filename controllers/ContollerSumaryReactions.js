@@ -5,8 +5,7 @@ exports.getDocument = async (req, res) => {
 
   try {
     const documento = await MyModel.findOne({
-      '_id.objectId': objectId,
-      '_id.reactionId': reactionId,
+      _id: { objectId: objectId, reactionId: reactionId },
     });
 
     if (documento) {
@@ -27,8 +26,7 @@ exports.createDocument = async (req, res) => {
 
   try {
     const existingDocument = await MyModel.findOne({
-      '_id.objectId': objectId,
-      '_id.reactionId': reactionId,
+      _id: { objectId: objectId, reactionId: reactionId },
     });
 
     if (existingDocument) {
