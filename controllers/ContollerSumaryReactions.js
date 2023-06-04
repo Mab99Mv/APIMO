@@ -1,27 +1,20 @@
 const MyModel = require('../models/ModelSumaryReactions.js');
 
-// Obtener un documento por objectId y reactionId
-exports.getDocument = async (req, res) => {
-  const { objectId, reactionId } = req.params;
+// Obtener el conteo de reacciones por objectId
+exports.getDocumentReactionsCount = async (req, res) => {
+  const { objectId } = req.params;
 
   try {
-    const documento = await MyModel.findOne({
-      objectId: objectId,
-      reactionId: reactionId,
-    });
+    const reactionsCount = await MyModel.countDocuments({ objectId: objectId });
 
-    if (documento) {
-      console.log('Documento encontrado:', documento);
-      res.json(documento);
-    } else {
-      console.log('Documento no encontrado');
-      res.status(404).send('Documento no encontrado');
-    }
+    console.log('Conteo de reacciones:', reactionsCount);
+    res.json({ count: reactionsCount });
   } catch (error) {
     console.error('Error en la consulta:', error);
     res.status(500).send('Error interno del servidor');
   }
 };
+
 
 // Crear un nuevo documento
 exports.createDocument = async (req, res) => {
