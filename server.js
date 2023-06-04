@@ -8,10 +8,15 @@ const port = 8080;
 app.use(cors());
 
 // Conexión a la base de datos MongoDB Atlas
-mongoose.connect('mongodb+srv://mabel:12345@data.jfzuc3o.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://mabel:12345@data.jfzuc3o.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: 'bdnosql' // Reemplaza con el nombre real de tu base de datos
+}).then(() => {
+  console.log('Conexión exitosa a la base de datos');
+}).catch((error) => {
+  console.error('Error al conectar a la base de datos:', error);
+  process.exit(1); // Detener la aplicación si no se pudo conectar a la base de datos
 });
 
 // Middleware para analizar datos JSON en las solicitudes
@@ -22,3 +27,4 @@ app.use('/api', routes);
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
