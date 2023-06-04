@@ -46,3 +46,13 @@ exports.createDocument = async (req, res) => {
   }
 };
 
+exports.getAllDocuments = async (req, res) => {
+  try {
+    const documentos = await MyModel.find();
+    console.log('Documentos encontrados:', documentos);
+    res.json(documentos);
+  } catch (error) {
+    console.error('Error al obtener los documentos:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+};
