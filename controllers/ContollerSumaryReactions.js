@@ -1,6 +1,5 @@
 const MyModel = require('../models/ModelSumaryReactions.js');
 
-// Obtener el conteo de reacciones por objectId
 exports.getDocumentReactionsCount = async (req, res) => {
   const { objectId } = req.params;
 
