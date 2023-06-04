@@ -1,4 +1,4 @@
-const MyModel = require('../models/MyModel');
+const MyModel = require('../models/ModelSumaryReactions.js');
 
 // Obtener un documento por objectId y reactionId
 exports.getDocument = async (req, res) => {
